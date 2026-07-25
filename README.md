@@ -309,9 +309,9 @@ Arrives in the session as:
 ```
 
 **Discovering the port**: read the session's state file (above). A machine-wide registry (for
-example a "presence" service that tracks which sessions are alive) can consume the state files
-to route events to the right session; fan-out to several sessions is the emitter's job — post
-to each port.
+example [plexus](https://github.com/jjuanrivvera/plexus), which tracks which sessions are alive) can
+consume the state files to route events to the right session; fan-out to several sessions is the
+emitter's job — post to each port.
 
 **Cost lives on the emitter.** Every injected event wakes the session and spends tokens. `edc`
 does no filtering; the emitter must pre-filter and only inject what is worth waking the model
