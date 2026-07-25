@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
-# CodeRabbit config for event-driven-claude (edc): a small, hand-rolled MCP stdio channel.
+# CodeRabbit config for edc: a small, hand-rolled MCP stdio channel.
 reviews:
   profile: chill
   poem: false

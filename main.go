@@ -1,4 +1,4 @@
-// Command edc (Event Driven Claude) is a transport-agnostic Claude Code "channel": an MCP
+// Command edc (Event-Driven Coding-agents) is a transport-agnostic Claude Code "channel": an MCP
 // stdio server whose only job is to make ANY session injectable. It declares the
 // claude/channel capability and runs a local /inject HTTP listener, so external deterministic
 // tools (crons, watchers, daemons) can POST an event that arrives as a session turn.
