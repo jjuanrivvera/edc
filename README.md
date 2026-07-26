@@ -1,4 +1,11 @@
-# edc — Event-Driven Coding-agents
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/edc-mark-ondark.svg">
+    <img alt="edc" src="assets/edc-mark-onlight.svg" width="104" height="104">
+  </picture>
+</p>
+
+<h1 align="center">edc — Event-Driven Coding-agents</h1>
 
 **Drive any coding-agent session with external events.** `edc` is a transport-agnostic event
 injector: a small local `/inject` HTTP endpoint that turns an event (a cron, a watcher, a daemon,
