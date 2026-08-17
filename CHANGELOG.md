@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.5.1
+
+**Codex adapter hardening.** Fixes found while running `edc codex serve` as a Telegram Hub.
+
+- **Trust framing**: `wrapEvent` now distinguishes `MESSAGE FROM OPERATOR` (source `TELEGRAM`
+  with `context.user_id` == `EDC_OWNER_ID`) from `SYSTEM EVENT (untrusted data)`, and the
+  developer instructions tell the model to treat operator messages as direct requests. Everything
+  else stays data — investigate, draft, never act.
+- **Delivery without an MCP**: the Telegram reply no longer depends on a channel MCP. The model is
+  told to end operator-facing turns with plain final text; `forwardFinalMessage` extracts that
+  text from the real `turn/completed` payload (`turn.items[].type=="agentMessage"`,
+  `phase=="final_answer"`) — the previously expected top-level `last_agent_message` field is not
+  what the app-server sends — and delivers it with `tgctl message send` (`EDC_TG_BOT` /
+  `EDC_TG_CHAT`).
+- **Typing indicator**: `startTyping`/`stopTyping` re-send `tgctl message action --action typing`
+  every 4s while a turn runs, so the operator sees the bot working (parity with the Claude
+  channel).
+- **Sandbox knobs**: `EDC_CODEX_SANDBOX` overrides `sandbox_mode` at launch (unset = the
+  app-server reads its Codex config file); `EDC_CODEX_PERMISSION=full` requests an unrestricted
+  `permission_profile` in `thread/start`. Note: `sandbox_mode=danger-full-access` as a `-c` flag
+  is filtered by app-server requirements; `workspace-write` + `network_access=true` in the config
+  file is what actually grants write + network.
+
 ## v0.5.0
 
 **Plexus.** edc is one half of **Plexus** (with
